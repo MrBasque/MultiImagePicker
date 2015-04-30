@@ -74,115 +74,115 @@
 		<source-file src="src/ios/GMImagePicker/pt.lproj/GMImagePicker.strings" target-dir="res/strings-pt" />
 
 		<!-- AF Networking -->
-		<resource-file src="src/ios/GMImagePicker/AFNetworking/LICENSE" target-dir="resources/AFNetworking" />
-		<resource-file src="src/ios/GMImagePicker/AFNetworking/README.md" target-dir="resources/AFNetworking" />
+		<source-file src="src/ios/GMImagePicker/AFNetworking/LICENSE" target-dir="resources/AFNetworking" />
+		<source-file src="src/ios/GMImagePicker/AFNetworking/README.md" target-dir="resources/AFNetworking" />
 		
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperation.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperation.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperation.h"  target-dir="AFNetworking" />
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperation.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPRequestOperationManager.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPSessionManager.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPSessionManager.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPSessionManager.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFHTTPSessionManager.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworking.h" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworking.h" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworkReachabilityManager.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFNetworkReachabilityManager.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFSecurityPolicy.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFSecurityPolicy.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFSecurityPolicy.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFSecurityPolicy.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLConnectionOperation.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLConnectionOperation.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLConnectionOperation.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLConnectionOperation.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLRequestSerialization.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLRequestSerialization.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLRequestSerialization.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLRequestSerialization.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLResponseSerialization.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLResponseSerialization.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLResponseSerialization.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLResponseSerialization.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLSessionManager.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLSessionManager.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLSessionManager.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/AFNetworking/AFURLSessionManager.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/AFNetworkActivityIndicatorManager.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIActivityIndicatorView+AFNetworking.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIAlertView+AFNetworking.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIButton+AFNetworking.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIImageView+AFNetworking.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIKit+AFNetworking.h" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIProgressView+AFNetworking.m" target-dir="AFNetworking"/>
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m" target-dir="AFNetworking" />
 
-		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" target-dir="AFNetworking"/>
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m" target-dir="AFNetworking"/>
 
 		<!-- mr progress -->
-		<header-file src="src/ios/GMImagePicker/mrprogress/MRProgress.h" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/MRProgress.h" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Blur/MRBlurView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Blur/MRBlurView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Blur/MRBlurView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Blur/MRBlurView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Blur/UIImage+MRImageEffects.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Blur/UIImage+MRImageEffects.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Blur/UIImage+MRImageEffects.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Blur/UIImage+MRImageEffects.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRActivityIndicatorView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRActivityIndicatorView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRActivityIndicatorView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRActivityIndicatorView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRCircularProgressView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRCircularProgressView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRCircularProgressView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRCircularProgressView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRIconView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRIconView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRIconView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRIconView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRNavigationBarProgressView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRNavigationBarProgressView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRNavigationBarProgressView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRNavigationBarProgressView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressOverlayView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressOverlayView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressOverlayView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressOverlayView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressView.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressView.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressView.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopableView.h" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopableView.h" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRActivityIndicatorView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRActivityIndicatorView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRActivityIndicatorView+AFNetworking.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRActivityIndicatorView+AFNetworking.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressOverlayView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressOverlayView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressOverlayView+AFNetworking.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressOverlayView+AFNetworking.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressView+AFNetworking.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressView+AFNetworking.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Support/AFNetworking/MRProgressView+AFNetworking.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMessageInterceptor.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMessageInterceptor.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMessageInterceptor.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMessageInterceptor.m" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMethodCopier.h" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMethodCopier.h" target-dir="mrprogress" />
 		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRMethodCopier.m" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRProgressHelper.h" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRProgressHelper.h" target-dir="mrprogress" />
 
-		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.m" />
+		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.h" target-dir="mrprogress" />
+		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.m" target-dir="mrprogress" />
 
 	</platform>
 
