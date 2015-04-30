@@ -130,7 +130,7 @@
 		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIRefreshControl+AFNetworking.m" />
 
 		<header-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" />
-		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.h" />
+		<source-file src="src/ios/GMImagePicker/AFNetworking/UIKit+AFNetworking/UIWebView+AFNetworking.m" />
 
 		<!-- mr progress -->
 		<header-file src="src/ios/GMImagePicker/mrprogress/MRProgress.h" />
