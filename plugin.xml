@@ -160,7 +160,6 @@
 		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRProgressView.m" />
 
 		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopableView.h" />
-		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopableView.m" />
 
 		<header-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.h" />
 		<source-file src="src/ios/GMImagePicker/mrprogress/Components/MRStopButton.m" />
