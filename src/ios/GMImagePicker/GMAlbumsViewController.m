@@ -12,7 +12,13 @@
 #import "GMGridViewController.h"
 #import "GMAlbumsViewCell.h"
 
-@import Photos;
+#import <Photos/PHAsset.h>
+#import <Photos/PHFetchOptions.h>
+#import <Photos/PHImageManager.h>
+#import <Photos/PHFetchResult.h>
+#import <Photos/PHCollection.h>
+#import <Photos/PHChange.h>
+
 
 @interface GMAlbumsViewController() <PHPhotoLibraryChangeObserver>
 

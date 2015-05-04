@@ -8,7 +8,7 @@
 
 #import "GMImagePickerController.h"
 #import "GMAlbumsViewController.h"
-@import Photos;
+
 
 @interface GMImagePickerController () <UINavigationControllerDelegate>
 

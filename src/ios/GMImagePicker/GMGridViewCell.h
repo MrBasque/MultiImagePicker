@@ -7,9 +7,7 @@
 //
 
 #import "MRCircularProgressView.h"
-
-@import UIKit;
-@import Photos;
+#import <Photos/Photos.h>
 
 
 @interface GMGridViewCell : UICollectionViewCell

@@ -8,8 +8,10 @@
 
 
 #import "GMImagePickerController.h"
-@import UIKit;
-@import Photos;
+
+
+#import <Photos/Photos.h>
+
 
 
 @interface GMGridViewController : UICollectionViewController

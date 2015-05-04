@@ -250,7 +250,9 @@ static void * MRTaskCountOfBytesReceivedContext = &MRTaskCountOfBytesReceivedCon
         self.titleLabelText = NSLocalizedString(@"Uploading …", @"Progress overlay view text when upload progress happens");
         self.mode = MRProgressOverlayViewModeDeterminateCircular;
         if (self.sessionTask) {
+            #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
             [(MRProgressView *)self.modeView setProgressWithUploadProgressOfTask:(NSURLSessionUploadTask *)self.sessionTask animated:YES];
+#endif
         } else if (self.operation) {
             [(MRProgressView *)self.modeView setProgressWithUploadProgressOfOperation:self.operation animated:YES];
         }
@@ -263,7 +265,9 @@ static void * MRTaskCountOfBytesReceivedContext = &MRTaskCountOfBytesReceivedCon
         self.titleLabelText = NSLocalizedString(@"Loading …", @"Progress overlay view text when download progess happens");
         self.mode = MRProgressOverlayViewModeDeterminateCircular;
         if (self.sessionTask) {
+            #if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
             [(MRProgressView *)self.modeView setProgressWithDownloadProgressOfTask:(NSURLSessionDownloadTask *)self.sessionTask animated:YES];
+#endif
         } else if (self.operation) {
             [(MRProgressView *)self.modeView setProgressWithDownloadProgressOfOperation:self.operation animated:YES];
         }

@@ -15,10 +15,10 @@
 //#import "PSYBlockTimer.h"
 #import "GMFetchItem.h"
 
+
+
 #define CDV_PHOTO_PREFIX @"cdv_photo_"
 #define CDV_THUMB_PREFIX @"cdv_thumb_"
-
-@import Photos;
 
 
 //Helper methods

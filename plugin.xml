@@ -183,6 +183,11 @@
 
 		<header-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.h" target-dir="mrprogress" />
 		<source-file src="src/ios/GMImagePicker/mrprogress/Utils/MRWeakProxy.m" target-dir="mrprogress" />
+        
+        <framework src="Accelerate.framework" />
+        <framework src="Security.framework" />
+        <framework src="Photos.framework" />
+        <framework src="SystemConfiguration.framework" />
 
 	</platform>
 

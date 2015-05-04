@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@import Photos;
+#import <Photos/Photos.h>
+
 
 @interface GMFetchItem : NSObject
 
