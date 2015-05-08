@@ -36,7 +36,7 @@
 
 - (void)launchGMImagePicker:(bool)allow_video title:(NSString *)title message:(NSString *)message
 {
-    GMImagePickerController *picker = [[GMImagePickerController alloc] init];
+    GMImagePickerController *picker = [[GMImagePickerController alloc] init:allow_video];
     picker.delegate = self;
     picker.title = title;
     picker.customNavigationBarPrompt = message;
@@ -44,7 +44,6 @@
     picker.colsInLandscape = 6;
     picker.minimumInteritemSpacing = 2.0;
     picker.modalPresentationStyle = UIModalPresentationPopover;
-    picker.allow_video = allow_video;
     
     UIPopoverPresentationController *popPC = picker.popoverPresentationController;
     popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;

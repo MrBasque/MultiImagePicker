@@ -16,10 +16,12 @@
 
 @implementation GMImagePickerController
 
-- (id)init
+- (id)init:(bool)allow_v
 {
     if (self = [super init])
     {
+        _allow_video = allow_v;
+        
         _selectedAssets = [[NSMutableArray alloc] init];
         _selectedFetches = [[NSMutableArray alloc] init];
         
