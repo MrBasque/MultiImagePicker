@@ -33,11 +33,13 @@
 @end
 
 
-@implementation GMAlbumsViewController
+@implementation GMAlbumsViewController{
+    bool allow_video;
+}
 
 @synthesize dic_asset_fetches;
 
-- (id)init
+- (id)init:(bool)allow_v
 {
     if (self = [super initWithStyle:UITableViewStylePlain])
     {
@@ -45,6 +47,8 @@
     }
     
     dic_asset_fetches = [[NSMutableDictionary alloc] init];
+    
+    allow_video = allow_v;
     
     return self;
 }
@@ -139,6 +143,12 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
     //This way I have acces to the number of items in each album, I can load the 3
     //thumbnails directly and I can pass the fetched result to the gridViewController.
     
+    NSPredicate * predicatePHAsset = allow_video? nil : [NSPredicate predicateWithFormat:@"mediaType == %d", PHAssetMediaTypeImage];
+    
+    PHFetchOptions *options = [[PHFetchOptions alloc] init];
+    options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+    options.predicate = predicatePHAsset;
+    
     self.collectionsFetchResultsAssets=nil;
     self.collectionsFetchResultsTitles=nil;
     
@@ -150,9 +160,6 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
     NSMutableArray *allFetchResultArray = [[NSMutableArray alloc] init];
     NSMutableArray *allFetchResultLabel = [[NSMutableArray alloc] init];
     {
-        PHFetchOptions *options = [[PHFetchOptions alloc] init];
-        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
-        //options.predicate = predicatePHAsset;
         
         PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsWithOptions:options];
         [allFetchResultArray addObject:assetsFetchResult];
@@ -172,7 +179,7 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
             
             //Albums collections are allways PHAssetCollectionType=1 & PHAssetCollectionSubtype=2
             
-            PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+            PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
             [userFetchResultArray addObject:assetsFetchResult];
             [userFetchResultLabel addObject:collection.localizedTitle];
         }
@@ -191,8 +198,8 @@ static NSString * const CollectionCellReuseIdentifier = @"CollectionCell";
             //Smart collections are PHAssetCollectionType=2;
             if(self.picker.customSmartCollections && [self.picker.customSmartCollections containsObject:@(assetCollection.assetCollectionSubtype)])
             {
-                PHFetchOptions *options = [[PHFetchOptions alloc] init];
-                options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
+                //PHFetchOptions *options = [[PHFetchOptions alloc] init];
+                //options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:NO]];
                 //options.predicate = predicatePHAsset;
                 PHFetchResult *assetsFetchResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
                 if(assetsFetchResult.count>0)

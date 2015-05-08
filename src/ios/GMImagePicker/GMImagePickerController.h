@@ -64,6 +64,9 @@ static CGSize const kPopoverContentSize = {480, 720};
  */
 @property (nonatomic, assign) BOOL displayAlbumsNumberOfAssets;
 
+
+@property (nonatomic, assign) BOOL allow_video;
+
 /**
  *  Grid customizations:
  *

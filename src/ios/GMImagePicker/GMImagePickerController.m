@@ -72,7 +72,7 @@
 
 - (void)setupNavigationController
 {
-    GMAlbumsViewController *albumsViewController = [[GMAlbumsViewController alloc] init];
+    GMAlbumsViewController *albumsViewController = [[GMAlbumsViewController alloc] init:_allow_video];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:albumsViewController];
     _navigationController.delegate = self;
     

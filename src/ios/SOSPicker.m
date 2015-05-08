@@ -23,20 +23,28 @@
 @synthesize callbackId;
 
 - (void) getPictures:(CDVInvokedUrlCommand *)command {
+    
+    NSArray * args = [ command arguments ];
+    
+    BOOL allow_video = [ [ args[0] objectForKey:@"allow_video" ] boolValue ];
+    NSString * title = [args[0] objectForKey:@"title"];
+    NSString * message = [args[0] objectForKey:@"message"];
+    
     self.callbackId = command.callbackId;
-    [self launchGMImagePicker];
+    [self launchGMImagePicker:allow_video title:title message:message];
 }
 
-- (void)launchGMImagePicker
+- (void)launchGMImagePicker:(bool)allow_video title:(NSString *)title message:(NSString *)message
 {
     GMImagePickerController *picker = [[GMImagePickerController alloc] init];
     picker.delegate = self;
-    picker.title = @"Custom title";
-    picker.customNavigationBarPrompt = @"Custom helper message!";
+    picker.title = title;
+    picker.customNavigationBarPrompt = message;
     picker.colsInPortrait = 4;
     picker.colsInLandscape = 6;
     picker.minimumInteritemSpacing = 2.0;
     picker.modalPresentationStyle = UIModalPresentationPopover;
+    picker.allow_video = allow_video;
     
     UIPopoverPresentationController *popPC = picker.popoverPresentationController;
     popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
