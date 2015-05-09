@@ -47,7 +47,7 @@
     
     UIPopoverPresentationController *popPC = picker.popoverPresentationController;
     popPC.permittedArrowDirections = UIPopoverArrowDirectionAny;
-    popPC.sourceView = nil;
+    popPC.sourceView = picker.view;
     //popPC.sourceRect = nil;
     
     [self.viewController showViewController:picker sender:nil];
