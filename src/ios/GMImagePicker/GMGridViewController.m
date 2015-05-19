@@ -449,6 +449,10 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
         PHImageRequestOptions *ph_options = [[PHImageRequestOptions alloc] init];
         
         [ ph_options setNetworkAccessAllowed:YES];
+        
+        // @BVL Set Deliverymode, in order to return highest quality
+		[ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeFastFormat ]; // Best Quality
+
         [ ph_options setProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
             
             fetch_item.percent = progress;
