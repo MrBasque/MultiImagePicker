@@ -30,7 +30,10 @@
 
 		<header-file src="src/ios/SOSPicker.h" />
 		<source-file src="src/ios/SOSPicker.m" />
-
+        
+        <header-file src="src/ios/GMImagePicker/UIImage+fixOrientation.h" />
+        <source-file src="src/ios/GMImagePicker/UIImage+fixOrientation.m" />
+        
 		<header-file src="src/ios/GMImagePicker/GMAlbumsViewCell.h" />
 		<source-file src="src/ios/GMImagePicker/GMAlbumsViewCell.m" />
 
