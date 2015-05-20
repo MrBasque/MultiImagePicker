@@ -451,7 +451,7 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
         [ ph_options setNetworkAccessAllowed:YES];
         
         // @BVL Set Deliverymode, in order to return highest quality
-		[ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeFastFormat ]; // Best Quality
+		[ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeHighQualityFormat ]; // Best Quality
 
         [ ph_options setProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
             
