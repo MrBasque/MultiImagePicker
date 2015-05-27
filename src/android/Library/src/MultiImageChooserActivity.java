@@ -97,6 +97,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     private static final int CURSORLOADER_REAL = 1;
 
     private Map<String, Integer> fileNames = new HashMap<String, Integer>();
+    ArrayList<String> thumbFileNames = new ArrayList<String>();
 
     private SparseBooleanArray checkStatus = new SparseBooleanArray();
 
@@ -109,7 +110,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
 
     private GridView gridView;
 
-    private final ImageFetcher fetcher = new ImageFetcher();
+    private ImageFetcher fetcher;
 
     private int selectedColor = 0xff32b2e1;
     private boolean shouldRequestThumb = true;
@@ -121,6 +122,9 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        fetcher = new ImageFetcher( getApplicationContext() );
+        
         fakeR = new FakeR(this);
         setContentView(fakeR.getId("layout", "multiselectorgrid"));
         fileNames.clear();
@@ -180,9 +184,10 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
         String name = getImageName(position);
+        String name_thumb = getImageThumbName(position);
         int rotation = getImageRotation(position);
 
-        if (name == null) {
+        if (name == null || name_thumb == null ) {
             return;
         }
         boolean isChecked = !isChecked(position);
@@ -200,6 +205,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             alert.show();
         } else if (isChecked) {
             fileNames.put(name, new Integer(rotation));
+            thumbFileNames.add( name_thumb );
             if (maxImageCount == 1) {
                 this.selectClicked(null);
             } else {
@@ -214,6 +220,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             }
         } else {
             fileNames.remove(name);
+            thumbFileNames.remove(name_thumb);
             maxImages++;
             ImageView imageView = (ImageView)view;
             if (android.os.Build.VERSION.SDK_INT>=16) {
@@ -369,6 +376,16 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             return null;
         }
         return name;
+    }
+    
+    private String getImageThumbName( int position ){
+    	
+    	imagecursor.moveToPosition(position);
+    	int id = imagecursor.getInt(image_column_index);
+    	
+    	String name = fetcher.getThumbFilePath(id);
+    	
+    	return name;
     }
     
     private int getImageRotation(int position) {
@@ -569,6 +586,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             } else if (al.size() > 0) {
                 Bundle res = new Bundle();
                 res.putStringArrayList("MULTIPLEFILENAMES", al);
+                res.putStringArrayList("MULTIPLEFILETHUMBNAMES", thumbFileNames );
                 if (imagecursor != null) {
                     res.putInt("TOTALFILES", imagecursor.getCount());
                 }
@@ -617,7 +635,7 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             int index = fileName.lastIndexOf('.');
             String name = fileName.substring(0, index);
             String ext = fileName.substring(index);
-            File file = File.createTempFile(name, ext);
+            File file = File.createTempFile(name+"_", ext);
             OutputStream outStream = new FileOutputStream(file);
             if (ext.compareToIgnoreCase(".png") == 0) {
                 bmp.compress(Bitmap.CompressFormat.PNG, quality, outStream);
