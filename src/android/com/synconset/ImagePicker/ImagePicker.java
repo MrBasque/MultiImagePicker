@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -56,9 +57,27 @@ public class ImagePicker extends CordovaPlugin {
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == Activity.RESULT_OK && data != null) {
+			
+			HashMap<String, Object> result = new HashMap<String, Object>();
+			
 			ArrayList<String> fileNames = data.getStringArrayListExtra("MULTIPLEFILENAMES");
-			JSONArray res = new JSONArray(fileNames);
-			this.callbackContext.success(res);
+			ArrayList<String> fileThumbNames = data.getStringArrayListExtra("MULTIPLEFILETHUMBNAMES");
+			
+			result.put( "actual", fileNames );
+			result.put("thumb", fileThumbNames );
+			
+			JSONObject res_object = new JSONObject(result);
+			
+			//JSONArray res = new JSONArray(fileNames);
+			/*JSONArray res = new JSONArray();
+			try {
+				res = new JSONArray( "[" + res_object.toString() + "]" );
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			
+			this.callbackContext.success(res_object);
 		} else if (resultCode == Activity.RESULT_CANCELED && data != null) {
 			String error = data.getStringExtra("ERRORMESSAGE");
 			this.callbackContext.error(error);
