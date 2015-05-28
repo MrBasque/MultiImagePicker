@@ -449,6 +449,10 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
         PHImageRequestOptions *ph_options = [[PHImageRequestOptions alloc] init];
         
         [ ph_options setNetworkAccessAllowed:YES];
+        
+        // @BVL Set Deliverymode, in order to return highest quality
+		[ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeHighQualityFormat ]; // Best Quality
+
         [ ph_options setProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
             
             fetch_item.percent = progress;
@@ -488,7 +492,20 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 
-                if ( ![ UIImageJPEGRepresentation(result, 1.0f ) writeToFile:filePath atomically:YES ] ) {
+                
+                // @BVL: Added orientation-fix to correctly display the returned result
+                
+//              if ( ![ UIImageJPEGRepresentation(result, 1.0f ) writeToFile:filePath atomically:YES ] ) {
+//                  return;
+//              }
+                
+                NSLog(@"original orientation: %ld",(UIImageOrientation)result.imageOrientation);
+                
+                UIImage *imageToDisplay = result.fixOrientation; //  UIImage+fixOrientation extension
+                
+          		NSLog(@"corrected orientation: %ld",(UIImageOrientation)imageToDisplay.imageOrientation);
+
+                if ( ![ UIImageJPEGRepresentation(imageToDisplay, 1.0f ) writeToFile:filePath atomically:YES ] ) {
                     return;
                 }
                 

@@ -8,7 +8,7 @@
 
 
 #import "GMImagePickerController.h"
-
+#import "UIImage+fixOrientation.m"
 
 #import <Photos/Photos.h>
 
