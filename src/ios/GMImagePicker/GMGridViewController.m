@@ -450,7 +450,8 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
         
         [ ph_options setNetworkAccessAllowed:YES];
         
-        // @BVL Set Deliverymode, in order to return highest quality
+        // BVL: Set Deliverymode, in order to return highest quality
+        // Note: This setting also prevents returning duplicates (Single callback)
 		[ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeHighQualityFormat ]; // Best Quality
 
         [ ph_options setProgressHandler:^(double progress, NSError *error, BOOL *stop, NSDictionary *info) {
@@ -497,18 +498,7 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
                 
                 
                 // @BVL: Added orientation-fix to correctly display the returned result
-                
-//              if ( ![ UIImageJPEGRepresentation(result, 1.0f ) writeToFile:filePath atomically:YES ] ) {
-//                  return;
-//              }
-                
-                NSLog(@"original orientation: %ld",(UIImageOrientation)result.imageOrientation);
-                
-                UIImage *imageToDisplay = result.fixOrientation; //  UIImage+fixOrientation extension
-                
-          		NSLog(@"corrected orientation: %ld",(UIImageOrientation)imageToDisplay.imageOrientation);
-
-                if ( ![ UIImageJPEGRepresentation(imageToDisplay, 1.0f ) writeToFile:filePath atomically:YES ] ) {
+                if ( ![ UIImageJPEGRepresentation(result.fixOrientation, 1.0f ) writeToFile:filePath atomically:YES ] ) {
                     return;
                 }
                 
