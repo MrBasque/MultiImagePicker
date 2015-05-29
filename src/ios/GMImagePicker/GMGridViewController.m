@@ -380,10 +380,15 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
     else*/
     {
         //NSLog(@"Image manager: Requesting FILL image for iPhone");
+        
+        // BVL: added this to force resultHandler (to prevent empty image_thumb property)
+        PHImageRequestOptions *ph_options = [[PHImageRequestOptions alloc] init];
+        [ ph_options setDeliveryMode: PHImageRequestOptionsDeliveryModeHighQualityFormat ]; // Best Quality
+        
         [self.imageManager requestImageForAsset:asset
                                      targetSize:AssetGridThumbnailSize
                                     contentMode:PHImageContentModeAspectFill
-                                        options:nil
+                                        options:ph_options
                                   resultHandler:^(UIImage *result, NSDictionary *info) {
                                       
                                       // Only update the thumbnail if the cell tag hasn't changed. Otherwise, the cell has been re-used.
