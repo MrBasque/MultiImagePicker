@@ -96,6 +96,8 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     private static final int CURSORLOADER_THUMBS = 0;
     private static final int CURSORLOADER_REAL = 1;
 
+    private Map<Integer, FileNameItem> fileNameGroup = new HashMap<Integer, FileNameItem>();
+    
     private Map<String, Integer> fileNames = new HashMap<String, Integer>();
     ArrayList<String> thumbFileNames = new ArrayList<String>();
 
@@ -183,13 +185,18 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     
     @Override
     public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-        String name = getImageName(position);
+
+    	String name = getImageName(position);
         String name_thumb = getImageThumbName(position);
+        
         int rotation = getImageRotation(position);
 
         if (name == null || name_thumb == null ) {
             return;
         }
+        
+        boolean be_in_group = fileNameGroup.containsKey( position );
+        
         boolean isChecked = !isChecked(position);
         if (maxImages == 0 && isChecked) {
             isChecked = false;
@@ -204,8 +211,20 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
             AlertDialog alert = builder.create();
             alert.show();
         } else if (isChecked) {
+        	
+        	if( !be_in_group ){
+        		
+        		FileNameItem fileNameItem = new FileNameItem();
+        		fileNameItem.original = name;
+        		fileNameItem.thumb = name_thumb;
+        		fileNameItem.rotation = rotation;
+        		
+        		fileNameGroup.put( position, fileNameItem );
+        	}
+        	
             fileNames.put(name, new Integer(rotation));
             thumbFileNames.add( name_thumb );
+            
             if (maxImageCount == 1) {
                 this.selectClicked(null);
             } else {
@@ -219,8 +238,13 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                 view.setBackgroundColor(selectedColor);
             }
         } else {
+        	
+        	if( be_in_group ){
+        		fileNameGroup.remove(position);
+        	}
             fileNames.remove(name);
             thumbFileNames.remove(name_thumb);
+        	
             maxImages++;
             ImageView imageView = (ImageView)view;
             if (android.os.Build.VERSION.SDK_INT>=16) {
@@ -303,12 +327,14 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
         getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(false);
         progress.show();
         Intent data = new Intent();
-        if (fileNames.isEmpty()) {
+        /*if (fileNames.isEmpty()) {*/
+        if (fileNameGroup.isEmpty()) {
             this.setResult(RESULT_CANCELED);
             progress.dismiss();
             finish();
         } else {
-            new ResizeImagesTask().execute(fileNames.entrySet());
+            /*new ResizeImagesTask().execute(fileNames.entrySet());*/
+        	new ResizeImagesTask().execute(fileNameGroup.entrySet());
         }
     }
     
@@ -317,9 +343,13 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
      * Helper Methods
      ********************/
     private void updateAcceptButton() {
+        /*((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done_textview")))
+                .setEnabled(fileNames.size() != 0);*/
         ((TextView) getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done_textview")))
-                .setEnabled(fileNames.size() != 0);
-        getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(fileNames.size() != 0);
+        .setEnabled(fileNameGroup.size() != 0);
+        
+        /*getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(fileNames.size() != 0);*/
+        getActionBar().getCustomView().findViewById(fakeR.getId("id", "actionbar_done")).setEnabled(fileNameGroup.size() != 0);
     }
 
     private void setupHeader() {
@@ -497,20 +527,21 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
     }
     
     
-    private class ResizeImagesTask extends AsyncTask<Set<Entry<String, Integer>>, Void, ArrayList<String>> {
+    /*private class ResizeImagesTask extends AsyncTask<Set<Entry<String, Integer>>, Void, ArrayList<String>> {*/
+    private class ResizeImagesTask extends AsyncTask<Set<Entry<Integer, FileNameItem>>, Void, ArrayList<FileNameItem>> {
         private Exception asyncTaskError = null;
 
         @Override
-        protected ArrayList<String> doInBackground(Set<Entry<String, Integer>>... fileSets) {
-            Set<Entry<String, Integer>> fileNames = fileSets[0];
-            ArrayList<String> al = new ArrayList<String>();
+        protected ArrayList<FileNameItem> doInBackground(Set<Entry<Integer, FileNameItem>>... fileSets) {
+            Set<Entry<Integer, FileNameItem>> fileNames = fileSets[0];
+            ArrayList<FileNameItem> al = new ArrayList<FileNameItem>();
             try {
-                Iterator<Entry<String, Integer>> i = fileNames.iterator();
+                Iterator<Entry<Integer, FileNameItem>> i = fileNames.iterator();
                 Bitmap bmp;
                 while(i.hasNext()) {
-                    Entry<String, Integer> imageInfo = i.next();
-                    File file = new File(imageInfo.getKey());
-                    int rotate = imageInfo.getValue().intValue();
+                    Entry<Integer, FileNameItem> imageInfo = i.next();
+                    File file = new File(imageInfo.getValue().original);
+                    int rotate = imageInfo.getValue().rotation;
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inSampleSize = 1;
                     options.inJustDecodeBounds = true;
@@ -555,27 +586,33 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                     }
 
                     file = this.storeImage(bmp, file.getName());
-                    al.add(Uri.fromFile(file).toString());
+                    //al.add(Uri.fromFile(file).toString());
+                    FileNameItem filenameitem = new FileNameItem();
+                    filenameitem.original = Uri.fromFile(file).toString();
+                    filenameitem.thumb = imageInfo.getValue().thumb;
+                    filenameitem.rotation = imageInfo.getValue().rotation;
+                    al.add(filenameitem);
+                    fileNameGroup.get( imageInfo.getKey()).original = Uri.fromFile(file).toString(); 
                 }
                 return al;
             } catch(IOException e) {
                 try {
                     asyncTaskError = e;
                     for (int i = 0; i < al.size(); i++) {
-                        URI uri = new URI(al.get(i));
+                        URI uri = new URI(al.get(i).original);
                         File file = new File(uri);
                         file.delete();
                     }
                 } catch(Exception exception) {
                     // the finally does what we want to do
                 } finally {
-                    return new ArrayList<String>();
+                    return new ArrayList<FileNameItem>();
                 }
             }
         }
         
         @Override
-        protected void onPostExecute(ArrayList<String> al) {
+        protected void onPostExecute(ArrayList<FileNameItem> al) {
             Intent data = new Intent();
 
             if (asyncTaskError != null) {
@@ -585,8 +622,9 @@ public class MultiImageChooserActivity extends Activity implements OnItemClickLi
                 setResult(RESULT_CANCELED, data);
             } else if (al.size() > 0) {
                 Bundle res = new Bundle();
-                res.putStringArrayList("MULTIPLEFILENAMES", al);
-                res.putStringArrayList("MULTIPLEFILETHUMBNAMES", thumbFileNames );
+                res.putParcelableArrayList("MULTIPLEFILENAMES", al);
+                /*res.putStringArrayList("MULTIPLEFILENAMES", al);
+                res.putStringArrayList("MULTIPLEFILETHUMBNAMES", thumbFileNames );*/
                 if (imagecursor != null) {
                     res.putInt("TOTALFILES", imagecursor.getCount());
                 }
