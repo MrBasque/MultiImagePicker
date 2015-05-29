@@ -460,7 +460,10 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
             GMGridViewCell *cell = (GMGridViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
             
             if ( cell ) {
-                [ cell set_progress:progress animated:false];
+                // BVL: Update UI when downloading:
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   [ cell set_progress:progress animated:false];
+               });
             }
             
         }];

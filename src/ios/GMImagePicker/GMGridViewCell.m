@@ -115,6 +115,14 @@ static UIColor *disabledColor;
         [self addSubview:_coverView];
         _coverView.hidden = YES;
         
+		//  BVL: Added Busy overlay
+        _busyCoverView = [[UIView alloc] initWithFrame:self.bounds];
+        _busyCoverView.translatesAutoresizingMaskIntoConstraints = NO;
+        _busyCoverView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _busyCoverView.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:0.4];
+        [self addSubview:_busyCoverView];
+        _busyCoverView.hidden = YES;
+
         _selectedButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _selectedButton.frame = CGRectMake(2*self.bounds.size.width/3, 0*self.bounds.size.width/3, self.bounds.size.width/3, self.bounds.size.width/3);
         _selectedButton.contentMode = UIViewContentModeTopRight;
@@ -129,8 +137,12 @@ static UIColor *disabledColor;
         
         // circle progress
         
-        self.circularProgressView = [[MRCircularProgressView alloc] initWithFrame:CGRectMake(self.bounds.size.width/3, self.bounds.size.height/3, self.bounds.size.width/3, self.bounds.size.height/3)];
-        [self.circularProgressView.stopButton addTarget:self action:@selector(onCircularProgressViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        //self.circularProgressView = [[MRCircularProgressView alloc] initWithFrame:CGRectMake(self.bounds.size.width/2, self.bounds.size.height/2, self.bounds.size.width/2, self.bounds.size.height/2)];
+        // BVL: Enlarge circle for readabilty
+		self.circularProgressView = [[MRCircularProgressView alloc] initWithFrame:CGRectMake(self.bounds.size.width/4, self.bounds.size.height/4, self.bounds.size.width/2, self.bounds.size.height/2)];
+		[self.circularProgressView.stopButton addTarget:self action:@selector(onCircularProgressViewTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+		// BVL: white circle 
+		[self.circularProgressView setTintColor:[UIColor whiteColor]];
         //[self.circularProgressView setHidden:true];
         [self addSubview:self.circularProgressView];
         
@@ -140,7 +152,10 @@ static UIColor *disabledColor;
         _fetch.textColor = titleColor;
         _fetch.textAlignment = NSTextAlignmentCenter;
         _fetch.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-        _fetch.text = @"fetching";
+        
+		// BVL: Translate fetching
+		//_fetch.text = @"fetching";
+		_fetch.text = NSLocalizedStringFromTable(@"picker.fetching-label", @"GMImagePicker",@"fetching");
         [self addSubview:_fetch];
         
     }
@@ -149,10 +164,12 @@ static UIColor *disabledColor;
 }
 
 -(void)show_progress{
+	_busyCoverView.hidden = false;
     [self.circularProgressView setHidden:false];
 }
 
 -(void)hide_progress{
+	_busyCoverView.hidden = true;
     [self.circularProgressView setHidden:true];
 }
 
@@ -161,10 +178,12 @@ static UIColor *disabledColor;
 }
 
 -(void)show_fetching{
+	_busyCoverView.hidden = false;
     _fetch.hidden = false;
 }
 
 -(void)hide_fetching{
+	_busyCoverView.hidden = true;
     _fetch.hidden = true;
 }
 
@@ -201,7 +220,8 @@ static UIColor *disabledColor;
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    _coverView.hidden = !selected;
+    _busyCoverView.hidden = true;
+	_coverView.hidden = !selected;
     _selectedButton.selected = selected;
 }
 

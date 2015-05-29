@@ -22,6 +22,8 @@
 @property (nonatomic, strong) CAGradientLayer *gradient;
 //Selection overlay
 @property (nonatomic, strong) UIView* coverView;
+//BVL: Busy overlay on tap
+@property(nonatomic, strong) UIView* busyCoverView;
 @property (nonatomic, strong) UIButton *selectedButton;
 
 @property (nonatomic, assign, getter = isEnabled) BOOL enabled;
