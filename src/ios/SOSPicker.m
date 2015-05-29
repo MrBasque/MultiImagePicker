@@ -87,15 +87,28 @@
     NSLog(@"GMImagePicker: User ended picking assets. Number of selected items is: %lu", (unsigned long)fetchArray.count);
     
     CDVPluginResult* result = nil;
-    NSMutableArray *resultStrings = [[NSMutableArray alloc] init];
+    NSMutableDictionary * result_all = [[NSMutableDictionary alloc] init];
+    
+    NSMutableArray *result_fullsize = [[NSMutableArray alloc] init];
+    NSMutableArray *result_thumbnail = [[NSMutableArray alloc] init];
     
     for (GMFetchItem *item in fetchArray) {
-        [ resultStrings addObject:item.image_fullsize];
+        
+        if ( !item.image_fullsize || !item.image_thumb ) {
+            continue;
+        }
+        
+        [ result_fullsize addObject:item.image_fullsize];
+        [ result_thumbnail addObject:item.image_thumb];
     }
+    
+    [ result_all setObject:result_fullsize forKey:@"actual" ];
+    [ result_all setObject:result_thumbnail forKey:@"thumb" ];
     
     result = nil;
     if (nil == result) {
-        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:resultStrings];
+        //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:resultStrings];
+        result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result_all];
     }
     
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
