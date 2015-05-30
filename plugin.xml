@@ -217,6 +217,7 @@
 		
 		<source-file src="src/android/Library/src/ImageFetcher.java" target-dir="src/com/synconset"/>
 		<source-file src="src/android/Library/src/MultiImageChooserActivity.java" target-dir="src/com/synconset"/>
+		<source-file src="src/android/Library/src/FileNameItem.java" target-dir="src/com/synconset"/>
 		
         <source-file src="src/android/Library/res/anim/image_pop_in.xml" target-dir="res/anim"/>
 		<source-file src="src/android/Library/res/drawable/grid_background.xml" target-dir="res/drawable"/>
@@ -247,5 +248,6 @@
 		<source-file src="src/android/Library/res/values-ko/multiimagechooser_strings_ko.xml" target-dir="res/values-ko"/>
 		
 		<source-file src="src/android/Library/libs/commons-io-2.4.jar" target-dir="libs" />
+		<source-file src="src/android/Library/libs/gson-2.3.1.jar" target-dir="libs" />
 	</platform>
 </plugin>
