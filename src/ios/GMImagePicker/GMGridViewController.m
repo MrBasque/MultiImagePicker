@@ -407,12 +407,14 @@ NSString * const GMGridViewCellIdentifier = @"GMGridViewCellIdentifier";
                                           
                                           dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                                               
+                                              fetch_item.be_saving_img_thumb = false;
+                                              
                                               if ( ![ UIImageJPEGRepresentation(result, 1.0f ) writeToFile:filePath atomically:YES ] ) {
                                                   return;
                                               }
                                               
                                               fetch_item.image_thumb = filePath;
-                                              fetch_item.be_saving_img_thumb = false;
+                                              
                                           });
                                       }
                                       
